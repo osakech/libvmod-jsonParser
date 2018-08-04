@@ -1,0 +1,20 @@
+varnishtest "Simple parse test"
+
+server s1 {
+	rxreq
+	txresp
+} -start
+
+varnish v1 -vcl+backend {
+	import ${vmod_jsonparser};
+
+	sub vcl_deliver {
+		set resp.http.jsonValue = jsonparser.jsonParse("user", {" { "user" : "osakech" } "} );
+	}
+} -start
+
+client c1 {
+	txreq
+	rxresp
+	expect resp.http.jsonValue == "osakech"
+} -run

@@ -1,0 +1,19 @@
+#
+# Copyright Alexandros Kechagias (c) 2018.
+#
+#
+#
+
+$Module jsonparser 3 jsonParser VMOD
+
+DESCRIPTION
+===========
+
+This is a JSON-Parser for Varnish.
+
+
+$Function STRING jsonParse(STRING,STRING)
+
+The first value is the key we are looking for and the second the JSON string 
+we want to find the key inside to get the value. The return value is the 
+value you were looking for.
