@@ -7,7 +7,6 @@ In your VCL you could then use this vmod along the following lines:
     import jsonparser;
 
     sub vcl_deliver {
-            # This sets resp.http.hello to "Hello, World"
             set resp.http.hello = jsonparser.parseJson("user",{" { "user" : "osakech" , "role" : "admin" } "});
             # resp.http.hello -> is set to "osakech"
     }
